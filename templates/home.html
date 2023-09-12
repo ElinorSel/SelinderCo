@@ -3,51 +3,35 @@
   <head>
     <title>Selinder Company</title>
     <!-- only for title, bts info and JS interactivity -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <style>
-      h1{
-        font-size: 50px;
-        font-family: monospace;
-        color: rgb(78,2,200);
-        text-align: center;
-        font-weight: bolder;
-      }
-      #banner {
-        width: 100%;
+      #banner{
         height: 360px;
+        width: 100%;
         object-fit: cover;
-      }
-      h2{
-        font-size: 32px;
-        font-family: monospace;
-        color: rgb(30,20,200);
-        text-align: center;
-        font-weight: bold;
-      }
-      .bodytext{
-        font-family: monospace;
-        color: rgb(0,0,0);
-        text-align: center;
-        font-weight: normal;
-      } 
-
-      div{
-        max-width: 720px;
-        margin: 0 auto 0 auto;
       }
     </style>
   </head>
 
   <body>
-    <div id = "container">
-      <h1>Selinder Company</h1>
-      <img id = "banner" src = "https://career-site-tut--elinorsel.repl.co/static/Banner.jpg">
-      <p class = "bodytext">Selinder Company is thrilled to announce its latest hiring initiative, as we continue to expand and strengthen our dynamic team. As a leader in the field of innovative technology solutions, we are dedicated to attracting top talent to fuel our mission of driving forward advancements in the digital landscape. Our commitment to fostering a diverse and inclusive work environment is unwavering, and we encourage individuals from all backgrounds to explore the exciting career opportunities that Selinder has to offer. With a strong emphasis on professional growth, collaboration, and cutting-edge projects, joining Selinder Company means joining a vibrant community of forward-thinkers and innovators. If you're ready to make an impact and contribute to the future of technology, we invite you to explore our current job openings and embark on an incredible journey with Selinder. Your skills and creativity are exactly what we're looking for to shape the world of tomorrow.</p>
-      <h2>Open Positions</h2>
-      <p class="bodytext">TODO show jobs</p>
-      <div style = "text-align:center;">
-        <button>Contact Us!</button>        
-      </div>
+    <div class= "container">
+      <h1 class = "text-center mt-4 mb-4" >Selinder Company</h1>
+      <img class = "img-fluid" id = "banner" src = "https://career-site-tut--elinorsel.repl.co/static/Banner.jpg">
+      <h2 class = "text-center mt-2 mb-2"> About Us</h2>
+      <p class = "lead">Selinder Company is thrilled to announce its latest hiring initiative, as we continue to expand and strengthen our dynamic team. As a leader in the field of innovative technology solutions, we are dedicated to attracting top talent to fuel our mission of driving forward advancements in the digital landscape. Our commitment to fostering a diverse and inclusive work environment is unwavering, and we encourage individuals from all backgrounds to explore the exciting career opportunities that Selinder has to offer. With a strong emphasis on professional growth, collaboration, and cutting-edge projects, joining Selinder Company means joining a vibrant community of forward-thinkers and innovators. If you're ready to make an impact and contribute to the future of technology, we invite you to explore our current job openings and embark on an incredible journey with Selinder. Your skills and creativity are exactly what we're looking for to shape the world of tomorrow.</p>
+
+      <h2 class = "text-center mt-2 mb-2">Open Positions</h2>
       <p>
+        {% for job in jobs %}
+          {% include "jobitem.html" %}
+        {% endfor %}
+      </p>
+      <div class = "text-center">
+        <button class="btn btn-primary btn-lg">Contact Us!</button>      
+      </div>
+      <p class = "text-center mt-4">
         copyright 2023, Selinder Company
       </p>
 
