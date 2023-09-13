@@ -1,5 +1,6 @@
 #connect to db using sql alchemy lib
-from sqlalchemy import create_engine, text
+from flask.templating import stream_template_string
+from sqlalchemy import create_engine, text, insert
 import os
 
 db_connection_str = os.environ["DB_CONNECTION_STRING"]
@@ -27,3 +28,19 @@ def load_job_from_db(id):
       return None
     else:
       return rows[0]._mapping
+
+
+def add_application_to_db(job_id, data):
+
+  with engine.connect() as conn:
+    text_str = "INSERT INTO `selinderco`.`applications` (`job_id`, `full_name`, `email`, `linkedin`, `education`, `work_experience`, `resume_url`) VALUES( "
+
+    second_str = "'" + job_id + "',  '" + data['full_name'] + "',  '" + data[
+        'email'] + "',  '" + data['linkedin'] + "',  '" + data[
+            'education'] + "',  '" + data['work_experience'] + "',  ';" + data[
+                'resume_url'] + "')"
+
+    full_string = text_str + second_str
+
+    query = text(full_string)
+    conn.execute(query)
