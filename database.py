@@ -1,6 +1,7 @@
 #connect to db using sql alchemy lib
 from sqlalchemy import create_engine, text
 import os
+
 db_connection_str = os.environ["DB_CONNECTION_STRING"]
 engine = create_engine(db_connection_str,
                        connect_args={"ssl": {
@@ -15,3 +16,14 @@ def load_jobs_from_db():
     for row in result.all():
       jobs.append(row._mapping)
     return jobs
+
+
+def load_job_from_db(id):
+  with engine.connect() as conn:
+    text_str = "SELECT * FROM jobs WHERE id = " + str(id)
+    result = conn.execute(text(text_str))
+    rows = result.all()
+    if len(rows) == 0:
+      return None
+    else:
+      return rows[0]._mapping
